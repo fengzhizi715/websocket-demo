@@ -12,4 +12,13 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation "ch.qos.logback:logback-classic:${libs.logback}"
+    implementation "ch.qos.logback:logback-core:${libs.logback}"
+    implementation "ch.qos.logback:logback-access:${libs.logback}"
+
+    implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
+    implementation "com.google.code.gson:gson:${libs.gson}"
+
+    implementation 'com.github.fengzhizi715.okhttp-extension:core:v1.1.2'
 }
