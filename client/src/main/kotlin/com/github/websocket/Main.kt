@@ -11,7 +11,6 @@ import okhttp3.WebSocketListener
 import okio.ByteString
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
