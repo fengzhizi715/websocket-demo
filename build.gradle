@@ -2,7 +2,9 @@ apply plugin: 'java'
 
 ext {
     libraries = [
-            rxjava3                   : "3.1.1"
+            logback                   : "1.2.3",
+
+            okhttp3                   : "4.9.2"
     ]
 }
 
