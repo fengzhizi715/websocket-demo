@@ -1,6 +1,9 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
-    id 'java'
+apply plugin: 'java'
+
+ext {
+    libraries = [
+            rxjava3                   : "3.1.1"
+    ]
 }
 
 group 'org.example'
@@ -8,15 +11,22 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-test {
-    useJUnitPlatform()
+buildscript {
+    ext.kotlin_version = '1.5.31'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
