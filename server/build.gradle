@@ -16,4 +16,6 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:${libs.logback}"
     implementation "ch.qos.logback:logback-core:${libs.logback}"
     implementation "ch.qos.logback:logback-access:${libs.logback}"
+
+    implementation "io.netty:netty-all:4.1.48.Final"
 }
