@@ -4,7 +4,9 @@ ext {
     libraries = [
             logback                   : "1.2.3",
 
-            okhttp3                   : "4.9.2"
+            okhttp3                   : "4.9.2",
+
+            gson                      : "2.8.6"
     ]
 }
 
