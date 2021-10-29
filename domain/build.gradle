@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'kotlin'
+}
+
+def libs = rootProject.ext.libraries // 库
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}

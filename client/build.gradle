@@ -21,4 +21,6 @@ dependencies {
     implementation "com.google.code.gson:gson:${libs.gson}"
 
     implementation 'com.github.fengzhizi715.okhttp-extension:core:v1.1.2'
+
+    implementation project(":domain")
 }

@@ -1,3 +1,5 @@
 rootProject.name = 'websocket-demo'
 include 'server'
 include 'client'
+include 'domain'
+

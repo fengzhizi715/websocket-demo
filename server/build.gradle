@@ -19,4 +19,6 @@ dependencies {
 
     implementation "io.netty:netty-all:4.1.48.Final"
     implementation "com.google.code.gson:gson:${libs.gson}"
+
+    implementation project(":domain")
 }
