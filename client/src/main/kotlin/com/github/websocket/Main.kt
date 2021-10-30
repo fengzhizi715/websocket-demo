@@ -35,10 +35,11 @@ private var websocket: WebSocket?=null
 private var status: WSStatus?=null
 private var ws: ReconnectWebSocketWrapper?=null
 private var disposable: Disposable? = null
+private const val machineId = "123456"
 
 private val httpClient: HttpClient by lazy {
     HttpClientBuilder()
-        .baseUrl("http://127.0.0.1:9876/ws")
+        .baseUrl("http://127.0.0.1:9876")
         .pingInterval(10, TimeUnit.SECONDS) // websocket 保活
         .allTimeouts(30, TimeUnit.SECONDS)
 //        .addInterceptor(HeaderInterceptor(builder.portId,builder.securityKey,builder.machineId))  // websocket 鉴权
@@ -130,7 +131,7 @@ private fun sendCommand(data: Map<String, Any>?) {
         val requestCommand = WebServiceRequest.Builder {
 
             header {
-                RequestHeaderVO("123456", "Request",sn, "WINDOWS", "1.0.0")
+                RequestHeaderVO(machineId, "Request",sn, "WINDOWS", "1.0.0")
             }
 
             body {
