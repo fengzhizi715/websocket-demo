@@ -1,8 +1,11 @@
 package com.github.websocket
 
+import com.github.websocket.enum.WebSocketActionEnum
+import com.github.websocket.extension.writeWSResponse
 import com.github.websocket.message.RequestHeaderVO
 import com.github.websocket.message.ResponseHeaderVO
 import com.github.websocket.message.WebServiceRequest
+import com.github.websocket.message.WebServiceResponse
 import com.github.websocket.utils.DeviceUtils
 import com.github.websocket.utils.GsonUtils
 import com.github.websocket.utils.uuid
@@ -56,20 +59,30 @@ object WebSocketManager {
 
         val webServiceRequest = GsonUtils.fromJson<WebServiceRequest>(request, WebServiceRequest::class.java)
 
-//        webServiceRequest?.let { request->
-//
-//            val header = request.getHeader()
-//            val clientIdNo = header?.clientIdNo
-//            if (clientIdNo == null && DeviceUtils.machineId != clientIdNo) {
-//                throw WatcherException("clientIdNo is null or clientIdNo is illegal")
-//            }
-//
-//            val body = request.getBody()
-//
-//            when(body?.get("action").toString()) {
-//
-//            }
-//        }
+        webServiceRequest?.let { request->
+
+            val header = request.getHeader()
+            val clientIdNo = header?.clientIdNo
+            if (clientIdNo == null && DeviceUtils.machineId != clientIdNo) {
+                throw RuntimeException("clientIdNo is null or clientIdNo is illegal")
+            }
+
+            val body = request.getBody()
+
+            when(body?.get("action").toString()) {
+                "HEARTBEAT" -> {
+                    ctx.writeWSResponse {
+                        val requestHeaderVO = generateResponseHeader(header?.msgSn)
+
+                        val responseBody = mutableMapOf<String, Any>().apply {
+                            this["action"] = WebSocketActionEnum.HEARTBEAT.getActionName()
+                            this["msg"] = "pong"
+                        }
+                        WebServiceResponse(requestHeaderVO,responseBody)
+                    }
+                }
+            }
+        }
     }
 
     private fun generateResponseHeader(msgSn:String?) = ResponseHeaderVO(DeviceUtils.machineId, "Response", msgSn)

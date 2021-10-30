@@ -114,18 +114,12 @@ private fun heartbeat() {
     val data = mutableMapOf<String, String>()
 
     data["state"] = "green"
-    data["remarkJson"] = ""
+    data["action"] = "HEARTBEAT"
 
-    sendCommand("HEARTBEAT", data)
+    sendCommand( data)
 }
 
-private fun sendCommand(command: () -> String) {
-
-    logger.info("request message: ${command.invoke()}")
-    websocket?.send(command.invoke())?: logger.error("websocket is closed...")
-}
-
-private fun sendCommand(action: String, data: Map<String, Any>?) {
+private fun sendCommand(data: Map<String, Any>?) {
 
     sendCommand {
 
@@ -134,7 +128,7 @@ private fun sendCommand(action: String, data: Map<String, Any>?) {
         val requestCommand = WebServiceRequest.Builder {
 
             header {
-                RequestHeaderVO("123456", action,sn, "WINDOWS", "1.0.0")
+                RequestHeaderVO("123456", "Request",sn, "WINDOWS", "1.0.0")
             }
 
             body {
@@ -144,4 +138,10 @@ private fun sendCommand(action: String, data: Map<String, Any>?) {
 
         GsonUtils.toJson(requestCommand)?:""
     }
+}
+
+private fun sendCommand(command: () -> String) {
+
+    logger.info("request message: ${command.invoke()}")
+    websocket?.send(command.invoke())?: logger.error("websocket is closed...")
 }
