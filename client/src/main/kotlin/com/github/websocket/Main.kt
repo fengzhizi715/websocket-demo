@@ -7,6 +7,7 @@ import cn.netdiscovery.http.core.websocket.WSConfig
 import cn.netdiscovery.http.core.websocket.WSStatus
 import com.github.websocket.message.RequestHeaderVO
 import com.github.websocket.message.WebServiceRequest
+import com.github.websocket.message.enum.WebSocketActionEnum
 import com.github.websocket.utils.GsonUtils
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -114,7 +115,8 @@ private fun heartbeat() {
     val data = mutableMapOf<String, String>()
 
     data["state"] = "green"
-    data["action"] = "HEARTBEAT"
+    data["action"] = WebSocketActionEnum.HEARTBEAT.getActionName()
+    data["msg"] = "ping"
 
     sendCommand( data)
 }

@@ -1,4 +1,4 @@
-package com.github.websocket.enum
+package com.github.websocket.message.enum
 
 /**
  *

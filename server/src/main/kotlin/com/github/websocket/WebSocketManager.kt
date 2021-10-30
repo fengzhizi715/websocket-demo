@@ -1,11 +1,11 @@
 package com.github.websocket
 
-import com.github.websocket.enum.WebSocketActionEnum
 import com.github.websocket.extension.writeWSResponse
 import com.github.websocket.message.RequestHeaderVO
 import com.github.websocket.message.ResponseHeaderVO
 import com.github.websocket.message.WebServiceRequest
 import com.github.websocket.message.WebServiceResponse
+import com.github.websocket.message.enum.WebSocketActionEnum
 import com.github.websocket.utils.DeviceUtils
 import com.github.websocket.utils.GsonUtils
 import com.github.websocket.utils.uuid
@@ -70,7 +70,7 @@ object WebSocketManager {
             val body = request.getBody()
 
             when(body?.get("action").toString()) {
-                "HEARTBEAT" -> {
+                "heartbeat" -> {
                     ctx.writeWSResponse {
                         val requestHeaderVO = generateResponseHeader(header?.msgSn)
 
