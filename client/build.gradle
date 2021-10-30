@@ -19,6 +19,7 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
     implementation "com.google.code.gson:gson:${libs.gson}"
+    implementation "io.reactivex.rxjava3:rxjava:${libs.rxjava}"
 
     implementation 'com.github.fengzhizi715.okhttp-extension:core:v1.1.2'
 
